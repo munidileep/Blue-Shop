@@ -29,7 +29,7 @@ const Verifyotp = () => {
                 <p>check your email OTP is already sent </p>
                 <div className="input-field">
                     <input required="" className="input" type="text" value={otp} onChange={(e) => setOtp(e.target.value)} />
-                    <label className="label" for="input">Enter OTP</label>
+                    <label className="label" htmlFor="input">Enter OTP</label>
                 </div>
                 <button className="submit-btn" onClick={verify}>Verify OTP</button>
             </div>

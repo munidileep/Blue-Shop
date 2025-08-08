@@ -50,26 +50,25 @@ function Km() {
       <div className='kdet'>
         <div className='details'>
           <p className='prodkey'>Name : </p>
-          <h2 >{pobj.name}</h2>
-        </div>
+          <h3 >{pobj.name}</h3>
+        </div><hr/>
         <div className='details'>
           <p className='prodkey'>Price : </p>
-          <h2>₹ {pobj.price}</h2>
-        </div>
+          <h3>₹ {pobj.price}</h3> 
+        </div><hr/>
         <div className='details'>
           <p className='prodkey'>Category : </p>
-          <h2>{pobj.cat}</h2>
-        </div>
+          <h3>{pobj.cat}</h3>
+        </div><hr/>
         <div className='details'>
           <p className='prodkey'>Description : </p>
           <span>{pobj.desc}</span>
-        </div>
+        </div><hr/>
         <div className="offers">
           <h3>Available Offers</h3>
-          <p><i className="fa-solid fa-tag"></i><strong>Special Price</strong> - Get extra 44% off (price inclusive of cashback/coupon) </p>
-          <p><i className="fa-solid fa-tag"></i><strong>Bank Offer</strong> - 5% Unlimited Cashback on Flipkart Axis Bank Credit Card</p>
+          <p><i className="fa-solid fa-tag"></i><strong>Special Price</strong> - Get extra 44% off (price inclusive of cashback/coupon) </p><hr/>
+          <p><i className="fa-solid fa-tag"></i><strong>Bank Offer</strong> - 5% Unlimited Cashback on Flipkart Axis Bank Credit Card</p><hr/>
           <p><i className="fa-solid fa-tag"></i><strong>Bank Offer</strong> - Flat ₹500 off on Credit Card EMI Transactions, on order of ₹15,000 & above</p>
-          {/* <p><i class="fa-solid fa-tag"></i><strong>Bank Offer</strong> - 10% off up to ₹1,200 on HDFC Bank Credit Card EMI on 6 and 9 months tenure. Min Txn Value: ₹5000 </p><span>T&C</span> */}
         </div>
         <div className='mainbtndiv'>
           <button className='btndiv' onClick={() => addcart(pobj)}>Add Cart</button>

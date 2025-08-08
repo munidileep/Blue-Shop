@@ -17,6 +17,7 @@ import Editprofile from './components/Editprofile'
 import Forgotpass from './components/Forgotpass'
 import Verifyotp from './components/Verifyotp'
 import Resetpass from './components/Resetpass'
+import Orders from './components/Orders'
 
 const App = () => {
   let [state, ustate] = useState({ "token": "", "name": "", "_id": "", "role": "" })
@@ -44,6 +45,7 @@ const App = () => {
           <Route path='/forgotpass' element={<Forgotpass />} />
           <Route path='/verifyotp' element={<Verifyotp />} />
           <Route path='/resetpass' element={<Resetpass />} />
+          <Route path='/orders' element={<Orders />} />
         </Routes>
       </Ct.Provider>
     </BrowserRouter>

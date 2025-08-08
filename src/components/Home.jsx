@@ -4,7 +4,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import React, { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import axios from 'axios'
 import Ct from './Cs';
 import { useNavigate } from "react-router-dom"
@@ -78,7 +78,7 @@ const Home = () => {
       {
         prod.map((pobj)=>{
           return ( <div className='card' key={pobj._id}> {/* Added key here bcoz when rendering a list of elements in React, each child must have a unique key prop. */}
-          <Card sx={{ maxWidth: 320, boxShadow: '12px 12px 15px rgba(0, 0, 0, 0.4)' }}>
+          <Card sx={{ maxWidth : 320, boxShadow: '12px 12px 15px rgba(0, 0, 0, 0.4)' }}>
           <CardMedia onClick={()=>knowmore(pobj)}
             sx={{ width: 'auto', height: 'auto',margin:2,border:1, aspectRatio: '1 / 1', cursor: 'pointer', '&:hover': { opacity: 0.8 }, objectFit: 'cover' }}
             image={pobj.pimg}
@@ -94,12 +94,12 @@ const Home = () => {
               Price : {pobj.price}
             </Typography>
           </CardContent>
-          <CardActions>
-            <Button size="small" onClick={()=>knowmore(pobj)}>Know More</Button>
-            <Button size="small" onClick={()=>addcart(pobj)}>Add Cart</Button>
-            {obj.state.role === "user" && <Button size="small" onClick={()=>buynow(pobj)}>Buy now </Button>}
-            {obj.state.token !== ""  && obj.state.role === "admin" && <Button size="small" onClick={()=>del(pobj)}>Delete</Button>}
-            {obj.state.token !== "" && obj.state.role === "admin" && <Button size="small" onClick={()=>edit(pobj)}>Edit</Button>}
+          <CardActions sx={{ display: 'flex',  flexWrap: 'wrap',  gap: 1,  justifyContent: 'space-evenly'}}>
+            {obj.state.role === "user" &&<Button className='btn2' size="small" onClick={()=>knowmore(pobj)}>Know More</Button>}
+            <Button className='btn2' size="small" onClick={()=>addcart(pobj)}>Add Cart</Button>
+            {(obj.state.role === "user" || obj.state.role === "") && <Button size="small" onClick={()=>buynow(pobj)}>Buy now </Button>}
+            {obj.state.token !== ""  && obj.state.role === "admin" && <Button className='btn2' size="small" onClick={()=>del(pobj)}>Delete</Button>}
+            {obj.state.token !== "" && obj.state.role === "admin" && <Button className='btn2' size="small" onClick={()=>edit(pobj)}>Edit</Button>}
           </CardActions>
         </Card>
         </div>)

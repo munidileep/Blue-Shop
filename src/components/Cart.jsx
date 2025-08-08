@@ -66,7 +66,7 @@ const Cart = () => {
 
   let dec = (cid, qty) => {
     if (qty > 1) {
-      axios.get(`https://blue-shop.onrender.com/${cid}`).then((res) => {
+      axios.get(`https://blue-shop.onrender.com/dec/${cid}`).then((res) => {
         setf(!f)
       })
     }
@@ -97,7 +97,7 @@ const Cart = () => {
           cart.map((pobj) => {
             return (
               <div className='card' key={pobj._id}>
-                <Card sx={{ boxShadow: '12px 12px 15px rgba(0, 0, 0, 0.4)' }}>
+                <Card sx={{boxShadow: '12px 12px 15px rgba(0, 0, 0, 0.4)' }}>
                   <CardMedia onClick={() => knowmore(pobj)}
                     sx={{ width: 'auto', height: 'auto', margin: 2, border: 1, aspectRatio: '1 / 1', cursor: 'pointer', '&:hover': { opacity: 0.8 }, objectFit: 'cover', }}
                     image={pobj.pimg}
@@ -110,9 +110,8 @@ const Cart = () => {
                       Price : {pobj.price}
                     </Typography>
                   </CardContent>
-                  <CardActions>
-                    <Button size="small" onClick={() => del(pobj._id)}>Delete</Button>
-                    <Button size="small" onClick={() => buynow()}>Buy Now</Button>
+                  <CardActions sx={{display:'flex',justifyContent:'space-evenly'}}>
+                    <Button size="small" onClick={() => del(pobj._id)}>Remove</Button>
                     <Button onClick={() => dec(pobj._id, pobj.qty)} size="small" style={{ fontSize: "30px" }}>-</Button>
                     <p style={{ color: "rgba(17, 118, 206, 0.8)" }}>{pobj.qty}</p>
                     <Button onClick={() => inc(pobj._id)} size="small" style={{ fontSize: "20px" }}>+</Button>
