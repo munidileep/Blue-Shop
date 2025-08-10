@@ -50,15 +50,15 @@ function Km() {
       <div className='kdet'>
         <div className='details'>
           <p className='prodkey'>Name : </p>
-          <h3 >{pobj.name}</h3>
+          <span >{pobj.name}</span>
         </div><hr/>
         <div className='details'>
           <p className='prodkey'>Price : </p>
-          <h3>₹ {pobj.price}</h3> 
+          <span>₹ {pobj.price}</span> 
         </div><hr/>
         <div className='details'>
           <p className='prodkey'>Category : </p>
-          <h3>{pobj.cat}</h3>
+          <span>{pobj.cat}</span>
         </div><hr/>
         <div className='details'>
           <p className='prodkey'>Description : </p>

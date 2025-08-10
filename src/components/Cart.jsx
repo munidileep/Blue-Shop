@@ -10,10 +10,12 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
 import Cookies from 'js-cookie';
 
+
 const Cart = () => {
   let navigate = useNavigate()
   let obj = useContext(Ct)
   let [cart, ucart] = useState([])
+  let [loading, setloading] = useState(true)
   let [total, utotal] = useState(0)
   let [f, setf] = useState(true)
   const userData = Cookies.get('user') ? JSON.parse(Cookies.get('user')) : null;
@@ -31,8 +33,10 @@ const Cart = () => {
             s = s + res.data[i].qty * res.data[i].price;
           }
           utotal(s);
+          setloading(false)
           obj.upd(userData);
         }).catch((error) => {
+          setloading(false)
           console.error("Error fetching cart data:", error);
         });
       } else {
@@ -40,6 +44,7 @@ const Cart = () => {
         return;
       }
     } catch (error) {
+      setloading(false)
       console.error("Unexpected error occurred:", error);
       navigate("/login");
     }
@@ -86,6 +91,21 @@ const Cart = () => {
   }
 
 
+  if (loading) {
+    return (
+      <div className='load-con'>
+        <div class="loader">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+      </div>
+    )
+  }
   return (
     <>
       <div className='cardcon2'>
@@ -97,7 +117,7 @@ const Cart = () => {
           cart.map((pobj) => {
             return (
               <div className='card' key={pobj._id}>
-                <Card sx={{boxShadow: '12px 12px 15px rgba(0, 0, 0, 0.4)' }}>
+                <Card sx={{ boxShadow: '12px 12px 15px rgba(0, 0, 0, 0.4)' }}>
                   <CardMedia onClick={() => knowmore(pobj)}
                     sx={{ width: 'auto', height: 'auto', margin: 2, border: 1, aspectRatio: '1 / 1', cursor: 'pointer', '&:hover': { opacity: 0.8 }, objectFit: 'cover', }}
                     image={pobj.pimg}
@@ -110,7 +130,7 @@ const Cart = () => {
                       Price : {pobj.price}
                     </Typography>
                   </CardContent>
-                  <CardActions sx={{display:'flex',justifyContent:'space-evenly'}}>
+                  <CardActions sx={{ display: 'flex', justifyContent: 'space-evenly' }}>
                     <Button size="small" onClick={() => del(pobj._id)}>Remove</Button>
                     <Button onClick={() => dec(pobj._id, pobj.qty)} size="small" style={{ fontSize: "30px" }}>-</Button>
                     <p style={{ color: "rgba(17, 118, 206, 0.8)" }}>{pobj.qty}</p>

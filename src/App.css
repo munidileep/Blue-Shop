@@ -4,29 +4,6 @@
   outline: 0px;
 }
 
-.cardcon {
-  opacity: 0;
-  animation: fadeIn 1s ease forwards;
-  animation: showPage 0.8s ease-out 0.6s forwards;
-}
-
-@keyframes showPage {
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes fadeIn {
-  50% {
-    opacity: 0.5;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
-
-
 input {
   padding: 10px;
   width: 20vw;
@@ -96,7 +73,7 @@ textarea {
   float: left;
   min-width: 45%;
   width: auto;
-  height: 90vh;
+  height: 91vh;
   padding: 30px;
   border: 2px solid #ccc;
   display: flex;
@@ -119,11 +96,11 @@ textarea {
   min-width: 55%;
   width: auto;
   float: right;
-  height: 90vh;
+  height: 91vh;
   border: 2px solid #ccc;
   padding: 30px;
   overflow: hidden;
-  background: linear-gradient(135deg, #ffffff, #7c9eb0);
+  background: linear-gradient(170deg, #ffffff, #aed0e3);
   gap: 5px;
   display: flex;
   flex-direction: column;
@@ -133,27 +110,24 @@ textarea {
 }
 
 .details p,
-h3,
 span {
   display: inline;
   color: #0f2b3f;
-  font-weight: bold;
   font-family: "century Gothic", "lato", "sans-serif";
 }
 
-.details h3,
 .details span {
-  color: #1a0873;
+  color: #000000;
   font-size: 1.2rem;
   line-height: 2rem;
 }
 
 .details .prodkey {
   font-family: "century Gothic", "lato", "sans-serif";
-  letter-spacing: 0.05rem;
   font-weight: bold;
   font-size: 20px;
-  color: #934b24;
+  letter-spacing: 0.05rem;
+  color: #000000;
 }
 
 .kdet .offers {
@@ -195,7 +169,7 @@ span {
   flex-wrap: wrap;
   gap: 20px;
   height: auto;
-  min-height: 90vh;
+  min-height: 91vh;
   background: linear-gradient(180deg, #7c9eb0, #7c9eb0);
   justify-content: space-evenly;
   align-items: center;
@@ -371,7 +345,7 @@ span {
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 92vh;
+  height: 91vh;
   background: linear-gradient(180deg, #7c9eb0, #7c9eb0);
 }
 
@@ -609,7 +583,7 @@ span {
 
 .editcon {
   width: 100%;
-  height: 92vh;
+  height: 91vh;
   box-sizing: border-box;
   display: flex;
   justify-content: center;
@@ -690,6 +664,7 @@ hr {
     height: 70vh;
   }
 
+
   .kdet {
     width: 100%;
     height: auto;
@@ -759,7 +734,7 @@ hr {
 
   .details h3,
   .details span {
-    color: #1a0873;
+    color: #000000;
     font-size: 1.2rem;
     line-height: 2rem;
   }
@@ -985,7 +960,7 @@ hr {
     box-sizing: border-box;
   }
 
-  .card{
+  .card {
     width: 85%;
   }
 
@@ -1055,11 +1030,10 @@ hr {
     padding: 20px 0px;
   }
 
-  .details h3,
   .details span {
-    color: #1a0873;
-    font-size: 1.2rem;
-    line-height: 1.5rem;
+    color: #000000;
+    font-size: 1rem;
+    line-height: 1.3rem;
     text-align: justify;
   }
 
@@ -1220,9 +1194,11 @@ hr {
 
 .searchbar {
   width: 80%;
+  height: 4vh;
   border: none;
   outline: none;
   padding: 5px;
+  box-sizing: border-box;
 }
 
 .search-icon {
@@ -1254,7 +1230,7 @@ hr {
   display: none;
   height: 4vh;
   background: #f1f1f1;
-  padding: 0.5rem;
+  padding: 0.3rem;
 }
 
 /* Links */
@@ -1270,12 +1246,12 @@ hr {
   font-size: 1.1rem;
   letter-spacing: 0.1rem;
   font-weight: 700;
-  font-family:"century Gothic", "lato", "sans-serif" ;
+  font-family: "century Gothic", "lato", "sans-serif";
 }
 
 .navanchor:hover {
   color: #004a7e;
-  
+
 }
 
 .cartlen {
@@ -1338,7 +1314,7 @@ hr {
   align-items: center;
   text-align: center;
   padding: 2rem 2rem;
-  background: linear-gradient(135deg, #b6ceff, #ffffff);
+  background: linear-gradient(185deg, #ffffff, #8c8c8c);
   color: rgb(0, 0, 0);
   font-family: sans-serif;
   border-radius: 12px;
@@ -1359,10 +1335,15 @@ hr {
 .orders-con {
   font-size: 1.5rem;
   text-shadow:
-    2px 2px 4px rgba(255, 255, 255, 0.7),
-    -2px -2px 4px rgba(196, 187, 187, 0.7);
+    2px 2px 4px rgba(252, 251, 251, 0.7),
+    -2px -2px 4px rgba(219, 213, 213, 0.7);
   font-weight: 600;
   letter-spacing: 1.2px;
+}
+
+.loader-con {
+  display: flex;
+  flex-direction: column;
 }
 
 @keyframes fadeInUp {
@@ -1396,9 +1377,75 @@ hr {
     max-width: 90%;
     padding: 1.5rem 1rem;
   }
+  .loader-con {
+  display: flex;
+  flex-direction: column;
+}
 
   .orders-con::before {
     font-size: 3rem;
     margin-bottom: 0.8rem;
   }
 }
+/* From Uiverse.io by cosnametv */ 
+
+.load-con{
+  height: 90vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.loader {
+  --color: #a5a5b0;
+  --size: 70px;
+  width: var(--size);
+  height: var(--size);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+}
+
+.loader span {
+  width: 100%;
+  height: 100%;
+  background-color: var(--color);
+  animation: keyframes-blink 0.6s alternate infinite linear;
+}
+
+.loader span:nth-child(1) {
+  animation-delay: 0ms;
+}
+
+.loader span:nth-child(2) {
+  animation-delay: 200ms;
+}
+
+.loader span:nth-child(3) {
+  animation-delay: 300ms;
+}
+
+.loader span:nth-child(4) {
+  animation-delay: 400ms;
+}
+
+.loader span:nth-child(5) {
+  animation-delay: 500ms;
+}
+
+.loader span:nth-child(6) {
+  animation-delay: 600ms;
+}
+
+@keyframes keyframes-blink {
+  0% {
+    opacity: 0.3;
+    transform: scale(0.5) rotate(5deg);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+

@@ -4,7 +4,9 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import React, { useContext, useEffect, useState } from 'react'
+import Skeleton from '@mui/material/Skeleton';
+import Box from '@mui/material/Box';
+import { useContext, useEffect, useState } from 'react'
 import axios from 'axios'
 import Ct from './Cs';
 import { useNavigate } from "react-router-dom"
@@ -14,6 +16,7 @@ import Cookies from 'js-cookie';
 const Search = () => {
     let obj = useContext(Ct)
     let [prod, uprod] = useState([])
+    let [loading, setloading] = useState(true)
     let navigate = useNavigate()
     let user = Cookies.get('user') ? JSON.parse(Cookies.get('user')) : null;
     let refresh_prod = JSON.parse(sessionStorage.getItem("searchprod")) || [];
@@ -35,10 +38,13 @@ const Search = () => {
     }, []);
 
     let fetchprod = () => {
+        
         if (user) {
             axios.get(`https://blue-shop.onrender.com/search?sid=${obj.state.searchd}`, { headers: { Authorization: user.token } }).then((res) => {
                 uprod(res.data);
+                setloading(false)
             }).catch((err) => {
+                setloading(false)
                 console.error("Error fetching data:", err);
             });
         }
@@ -84,6 +90,39 @@ const Search = () => {
     sessionStorage.setItem("editprod", JSON.stringify(editobj));
     navigate("/edit");
   }
+
+  if (loading) {
+  return (
+    <div className='cardcon'>
+      {[1, 2, 3, 4,5,6,7,8].map((_, index) => (
+        <div className='card' key={index}>
+          <Card sx={{ maxWidth: 320, boxShadow: '12px 12px 15px rgba(0, 0, 0, 0.4)' }}>
+            {/* Image skeleton with same size/margin as your CardMedia */}
+            <Box sx={{ width: 'auto', margin: 2, border: 1, aspectRatio: '1 / 1' }}>
+              <Skeleton variant="rectangular" width="100%" height="100%" animation="wave" />
+            </Box>
+
+            <CardContent>
+              {/* Title skeleton */}
+              <Skeleton variant="text" height={40} width="70%" animation="wave" />
+              {/* Description skeleton */}
+              <Skeleton variant="text" height={20} width="90%" animation="wave" />
+              <Skeleton variant="text" height={20} width="85%" animation="wave" />
+              {/* Price skeleton */}
+              <Skeleton variant="text" height={30} width="50%" animation="wave" />
+            </CardContent>
+
+            <CardActions sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, justifyContent: 'space-evenly' }}>
+              <Skeleton variant="rectangular" width={80} height={36} animation="wave" />
+              <Skeleton variant="rectangular" width={80} height={36} animation="wave" />
+              <Skeleton variant="rectangular" width={80} height={36} animation="wave" />
+            </CardActions>
+          </Card>
+        </div>
+      ))}
+    </div>
+  );
+}
 
     return (
         <div className='cardcon'>
