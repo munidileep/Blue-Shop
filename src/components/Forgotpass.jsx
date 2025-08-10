@@ -17,7 +17,7 @@ const Forgotpass = () => {
         console.log(fdata)
         if (email._id !== "") {
             console.log(email)
-            axios.post("http://localhost:5555/sendotp", email).then((res) => {
+            axios.post("https://blue-shop.onrender.com/sendotp", email).then((res) => {
                 let result = res.data.message
                 if (result === "OTP sent to your email") {
                     localStorage.setItem("resetEmail", email._id);

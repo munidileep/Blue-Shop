@@ -22,7 +22,7 @@ const Verifyotp = () => {
 
     let verify = () => {
         if (otp !== "") {
-            axios.post("http://localhost:5555/verifyotp", { email, otp }).then((res) => {
+            axios.post("https://blue-shop.onrender.com/verifyotp", { email, otp }).then((res) => {
                 let result = res.data.message
                 if (result === "OTP verified successfully") {
                     if (fdata) {

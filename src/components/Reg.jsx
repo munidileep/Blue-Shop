@@ -14,7 +14,7 @@ const Reg = () => {
 
   let add = () => {
     if (fdata._id !== "" && fdata.name !== "" && fdata.phno !== "" && fdata.pwd !== "" && fdata.address !== "" && fdata.gen !== "") {
-      axios.post("http://localhost:5555/sendotp", { "_id": fdata._id, "forgot": false }).then((res) => {
+      axios.post("https://blue-shop.onrender.com/sendotp", { "_id": fdata._id, "forgot": false }).then((res) => {
         let result = res.data.message
         if (result === "OTP sent to your email") {
           localStorage.setItem("resetEmail", fdata._id);
