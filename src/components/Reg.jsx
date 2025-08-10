@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
@@ -12,13 +12,16 @@ const Reg = () => {
     ufdata({ ...fdata, [e.target.name]: e.target.value })
   }
 
-
   let add = () => {
     if (fdata._id !== "" && fdata.name !== "" && fdata.phno !== "" && fdata.pwd !== "" && fdata.address !== "" && fdata.gen !== "") {
-      axios.post("https://blue-shop.onrender.com/reg", fdata).then((res) => {
-        umessage(res.data.message)
-        if (res.data.message === "registration done") {
-          navigate("/login")
+      axios.post("http://localhost:5555/sendotp", { "_id": fdata._id, "forgot": false }).then((res) => {
+        let result = res.data.message
+        if (result === "OTP sent to your email") {
+          localStorage.setItem("resetEmail", fdata._id);
+          navigate("/verifyotp", { state: { "data": fdata } });
+        }
+        else {
+          umessage(result)
         }
       })
     }
@@ -26,7 +29,12 @@ const Reg = () => {
       umessage("please enter all details")
     }
   }
-
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      umessage("")
+    }, 5000)
+    return () => clearTimeout(timer);
+  }, [message])
 
   return (
     <div className='formcon'>
@@ -36,15 +44,15 @@ const Reg = () => {
         <div className='details-valuesb'>Note : Once created you cannot Change your Email</div>
         <div className="input-field">
           <input required="" className="input" type="text" name='_id' value={fdata._id} onChange={fun} />
-          <label className="label" for="input">Enter Email</label>
+          <label className="label" htmlFor="input">Enter Email</label>
         </div>
         <div className="input-field">
           <input required="" className="input" type='text' name='name' value={fdata.name} onChange={fun} />
-          <label className="label" for="input">Enter name</label>
+          <label className="label" htmlFor="input">Enter name</label>
         </div>
         <div className="input-field">
           <input required="" className="input" type="password" name='pwd' value={fdata.pwd} onChange={fun} />
-          <label className="label" for="input">Enter Password</label>
+          <label className="label" htmlFor="input">Enter Password</label>
         </div>
       </div>
       <div className="form-control">
@@ -59,11 +67,11 @@ const Reg = () => {
         </div>
         <div className="input-field">
           <input required="" className="input" type="text" name='phno' value={fdata.phno} onChange={fun} />
-          <label className="label" for="input">Enter phno</label>
+          <label className="label" htmlFor="input">Enter phno</label>
         </div>
         <div className="input-field">
           <textarea required="" className="input" rows={4} name='address' value={fdata.address} onChange={fun}></textarea>
-          <label className="label" for="input">Enter Address</label>
+          <label className="label" htmlFor="input">Enter Address</label>
         </div>
         <button className="submit-btn" onClick={add}>Verify Email</button>
         <p>Already have an account ? <Link className='signup' to="/login">SignIn</Link></p>

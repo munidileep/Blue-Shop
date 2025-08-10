@@ -87,7 +87,7 @@ if (loading) {
         <div className='card' key={index}>
           <Card sx={{ maxWidth: 320, boxShadow: '12px 12px 15px rgba(0, 0, 0, 0.4)' }}>
             {/* Image skeleton with same size/margin as your CardMedia */}
-            <Box sx={{ width: 'auto', margin: 2, border: 1, aspectRatio: '1 / 1' }}>
+            <Box sx={{ width: 'auto', margin: 2, aspectRatio: '1 / 1' }}>
               <Skeleton variant="rectangular" width="100%" height="100%" animation="wave" />
             </Box>
 
